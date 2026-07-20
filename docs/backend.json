@@ -1,0 +1,85 @@
+
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product in the inventory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "purchasePrice": { "type": "number" },
+        "sellingPrice": { "type": "number" },
+        "quantity": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "name", "purchasePrice", "sellingPrice", "quantity"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "A regular customer with potential debt",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "totalDebt": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "name", "totalDebt"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "A recorded sales transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "quantitySold": { "type": "number" },
+        "totalPrice": { "type": "number" },
+        "profit": { "type": "number" },
+        "paymentType": { "type": "string", "enum": ["cash", "credit"] },
+        "customerId": { "type": "string" },
+        "date": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "productId", "quantitySold", "totalPrice", "paymentType"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Business expenses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "description", "amount", "date"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com"]
+  },
+  "firestore": {
+    "/users/{userId}/data/products": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "User's product inventory list"
+    },
+    "/users/{userId}/data/sales": {
+      "schema": { "$ref": "#/entities/Sale" },
+      "description": "User's sales history"
+    },
+    "/users/{userId}/data/customers": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "User's customers and debt tracking"
+    },
+    "/users/{userId}/data/expenses": {
+      "schema": { "$ref": "#/entities/Expense" },
+      "description": "User's business expenses"
+    }
+  }
+}
