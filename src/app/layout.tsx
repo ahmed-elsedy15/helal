@@ -8,7 +8,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/context/language-context';
 
 export const metadata: Metadata = {
-  title: 'Bedaya بداية لادارة المبيعات',
+  title: 'مكتبة تميم',
   description: 'Manage products and track daily sales ',
   icons: {
     icon: './king2.png',
@@ -43,7 +43,7 @@ export default function RootLayout({
 
                   {/* الاسم في النص */}
                   <div className="flex-1 text-center font-semibold text-lg">
-                    شركة بداية للإلكترونيات
+                    مكتبه تميم
                   </div>
 
                   <div className="flex items-center gap-2">
